@@ -351,5 +351,50 @@ namespace AddressBookSystem
             }
         }
 
+
+        /* UC14:- Ability to Write the Address Book with Persons Contact as CSV File 
+                  - Use OpenCSV Library.
+        */
+
+        public void WriteAddressBookToCsv()
+        {
+            // Writing to csv file
+            string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".csv";
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                var csv = new CsvWriter(sw, CultureInfo.InvariantCulture);
+                csv.WriteRecords(contactList);
+                sw.Flush();
+            }
+
+        }
+
+        /* UC14:- Ability to Read the Address Book with Persons Contact as CSV File 
+                  - Use OpenCSV Library.
+        */
+        public void ReadAddressBookFromCSV()
+        {
+            try
+            {
+                string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".csv";
+                StreamReader sr = new StreamReader(filePath);
+
+                // Reading from  csv file
+                var csvOne = new CsvReader(sr, CultureInfo.InvariantCulture);
+                //csvOne.Configuration.Delimiter = ",";
+                var list = csvOne.GetRecords<ContactDetails>().ToList();
+                if (list.Count() == 0)
+                {
+                    Console.WriteLine("No records found");
+                    return;
+                }
+                list.ForEach(contact => contact.Display());
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Write into the file to read from it.");
+            }
+        }
+
     }
 }

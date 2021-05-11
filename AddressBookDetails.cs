@@ -1,12 +1,15 @@
 ﻿namespace AddressBookSystem
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Text;
+    using CsvHelper;
     using Microsoft.Build.Utilities;
     using NLog;
 
@@ -32,7 +35,8 @@
         public static Dictionary<string, List<ContactDetails>> stateToContactMap = new Dictionary<string, List<ContactDetails>>();
         private Dictionary<string, List<ContactDetails>> cityToCOntactMapInstance;
         private Dictionary<string, List<ContactDetails>> stateToContactMapInstance;
-       
+        private IEnumerable contactList;
+
         /*   UC6:- Refactor to add multiple Address Book to the System.Each Address Book has a unique Name 
                     - Use Console to add new Address Book - Maintain Dictionary of Address Book Name to Address Book
            */
@@ -318,8 +322,10 @@
                                       "\n3.Edit Record" +
                                       "\n4.Delete Records" +
                                       "\n5.Search Contact Records" +
-                                      "\n6.Write Address Book System to txt File" +                                      
-                                      "\n7.Read Txt File" +                                      
+                                      "\n6.Write Address Book System to txt File" +
+                                      "\n7.Write Address Book System to CSV File" +                                                                 
+                                      "\n8.Read Txt File" +
+                                      "\n9.Read CSV File " +
                                       "\n0.Exit\n " +
                                       "\nEnter Your Choice:- ");
                     int choice4 = Convert.ToInt32(Console.ReadLine());
@@ -346,13 +352,17 @@
                         case 6:
                             addressBook.WriteAddressBookToFile();
                             break;
-                       
-
                         case 7:
-                            addressBook.ReadAddressBookFromFile();
+                            addressBook.WriteAddressBookToCsv();
                             break;
 
-                       
+                        case 8:
+                            addressBook.ReadAddressBookFromFile();
+                            break;
+                        case 9:
+                            addressBook.ReadAddressBookFromCSV();
+                            break;
+
 
                         case 0:
                             Console.WriteLine("Exiting Address Book");
@@ -458,6 +468,8 @@
                 return new AddressBookDetails();
             }
         }
+        
+
         public void AddOrAccessAddressBook()
         {
             throw new NotImplementedException();
