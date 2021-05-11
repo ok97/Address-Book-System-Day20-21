@@ -323,9 +323,11 @@
                                       "\n4.Delete Records" +
                                       "\n5.Search Contact Records" +
                                       "\n6.Write Address Book System to txt File" +
-                                      "\n7.Write Address Book System to CSV File" +                                                                 
-                                      "\n8.Read Txt File" +
-                                      "\n9.Read CSV File " +
+                                      "\n7.Write Address Book System to CSV File" +
+                                      "\n8.Write Address Book System to JSON File" +
+                                      "\n9.Read Txt File" +
+                                      "\n10.Read CSV File " +
+                                      "\n11.Read JSON File " +
                                       "\n0.Exit\n " +
                                       "\nEnter Your Choice:- ");
                     int choice4 = Convert.ToInt32(Console.ReadLine());
@@ -355,14 +357,21 @@
                         case 7:
                             addressBook.WriteAddressBookToCsv();
                             break;
-
                         case 8:
+                            addressBook.WriteAddressBookToJson();
+                            break;
+
+                        case 9:
                             addressBook.ReadAddressBookFromFile();
                             break;
-                        case 9:
+
+                        case 10:
                             addressBook.ReadAddressBookFromCSV();
                             break;
 
+                        case 11:
+                            addressBook.ReadAddressBookFromJSON();
+                            break;
 
                         case 0:
                             Console.WriteLine("Exiting Address Book");

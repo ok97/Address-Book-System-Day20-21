@@ -396,5 +396,45 @@ namespace AddressBookSystem
             }
         }
 
+        /* UC15:- Ability to Write the Address Book with Persons Contact as JSON File 
+                  - Use GSON Library.
+         */
+       
+        public void WriteAddressBookToJson()
+        {
+            // Writing to json file
+            string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".json";
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                string json = JsonConvert.SerializeObject(contactList);
+                sw.WriteLine(json);
+                sw.Flush();
+            }
+        }
+        /* UC15:- Ability to Read the Address Book with Persons Contact as JSON File 
+                  - Use GSON Library.
+         */
+        
+        public void ReadAddressBookFromJSON()
+        {
+            try
+            {
+                // Read from json file
+                string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".json";
+                string json = File.ReadAllText(filePath);
+                List<ContactDetails> list = JsonConvert.DeserializeObject<List<ContactDetails>>(json);
+                if (list.Count() == 0)
+                {
+                    Console.WriteLine("No records found");
+                    return;
+                }
+                list.ForEach(contact => contact.Display());
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Write into the file to read from it.");
+            }
+        }
+
     }
 }
