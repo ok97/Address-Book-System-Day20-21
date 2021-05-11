@@ -104,8 +104,10 @@
             */
             try
             {
-                
-                if (addressBookList.Count == 0)// Returns no record found if address book is empty
+
+
+                // Returns no record found if address book is empty
+                if (addressBookList.Count == 0)
                 {
                     Console.WriteLine("\nNo record found");
                     return;
@@ -316,12 +318,8 @@
                                       "\n3.Edit Record" +
                                       "\n4.Delete Records" +
                                       "\n5.Search Contact Records" +
-                                      "\n6.Write Address Book System to txt File" +
-                                      "\n7.Write Address Book System to CSV File" +
-                                      "\n8.Write Address Book System to JSON File" +
-                                      "\n9.Read Txt File" +
-                                      "\n10.Read CSV File " +
-                                      "\n11.Read JSON File " +
+                                      "\n6.Write Address Book System to txt File" +                                      
+                                      "\n7.Read Txt File" +                                      
                                       "\n0.Exit\n " +
                                       "\nEnter Your Choice:- ");
                     int choice4 = Convert.ToInt32(Console.ReadLine());
@@ -348,24 +346,13 @@
                         case 6:
                             addressBook.WriteAddressBookToFile();
                             break;
-                        case 7:
-                            addressBook.WriteAddressBookToCsv();
-                            break;
-                        case 8:
-                            addressBook.WriteAddressBookToJson();
-                            break;
+                       
 
-                        case 9:
+                        case 7:
                             addressBook.ReadAddressBookFromFile();
                             break;
 
-                        case 10:
-                            addressBook.ReadAddressBookFromCSV();
-                            break;
-
-                        case 11:
-                            addressBook.ReadAddressBookFromJSON();
-                            break;
+                       
 
                         case 0:
                             Console.WriteLine("Exiting Address Book");
@@ -413,7 +400,7 @@
         }
 
 
-        /* UC13:- Ability to Read or Write the Address Book with Persons Contact into a File using File IO
+        /* UC13:- Ability to  Write the Address Book with Persons Contact into a File using File IO
                   - Using C# File IO
         */
        
@@ -437,7 +424,7 @@
                 Console.WriteLine(ex.Message);
             }
         }
-        /* UC13:- Ability to Read or Write the Address Book with Persons Contact into a File using File IO
+        /* UC13:- Ability to Read the Address Book with Persons Contact into a File using File IO
                  - Using C# File IO
        */
         public static AddressBookDetails ReadFromFile()

@@ -320,7 +320,36 @@ namespace AddressBookSystem
 
             return SearchByName(name); //continue search with new name
         }
+        /* UC13:- Ability to Write the Address Book with Persons Contact into a File using File IO
+                 - Using C# File IO
+       */
+        public void WriteAddressBookToFile()
+        {
+            // Writing to txt file
+            string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".txt";
+            contactList.ForEach(contact => File.WriteAllText(filePath,
+                "FirstName:- " + contact.FirstName + " LastName:- " + contact.LastName +
+                "Address:- " + contact.Address + " City:- " + contact.City +
+                "State:- " + contact.State + " Zip:- " + contact.Zip +
+                "Email:- " + contact.Email));
 
-       
+        }
+
+        /* UC13:- Ability to Read the Address Book with Persons Contact into a File using File IO
+                - Using C# File IO
+      */
+        public void ReadAddressBookFromFile()
+        {
+            try
+            {
+                string filePath = @"D:\Practice\C#\AddressBookSystem\AddressBookSystem\IO File\" + nameOfAddressBook + ".txt";
+                Console.WriteLine(String.Join("\n ", File.ReadLines(filePath))); ;
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Write into the file to read from it.");
+            }
+        }
+
     }
 }
