@@ -246,6 +246,10 @@ namespace AddressBookSystem
                    - Use Collection Library for Sorting.
                    - Override toString method to finally Print Person Entry in Concole.
                    - Use Lambda Expression.
+            UC12:- Ability to sort the entries in the address book by City, State, or Zip 
+                   - Write functions to sort person by City, State or Zip.
+                   - Use Collection Library for Sorting.
+                   - Use Lambda.
             */
 
             if (contactList.Count() == 0) //List does not have any contacts
